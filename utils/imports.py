@@ -5,7 +5,7 @@ sys.path.insert(0,local_path+'.env')
 from env import *
 
 # local-host
-import math, os, datetime, json, pprint, requests
+import re, requests, math, os, datetime, json, pprint
 
 # python data science library's
 import numpy as np
