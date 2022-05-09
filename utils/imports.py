@@ -3,13 +3,13 @@ import sys
 local_path = '/Users/hinzlehome/codeup-data-science/binance-project/'
 sys.path.insert(0,local_path+'.env')
 from env import *
-# used for trouble shooting filepath issues
-import os
-print(os.getcwd())
-# used for trouble shooting large notebooks
-jupyter nbconvert --clear-output explore.ipynb
-jupyter nbconvert --inplace --execute explore.ipynb
-jupyter nbconvert --to python explore.ipynb
+# # used for trouble shooting filepath issues
+# import os
+# print(os.getcwd())
+# # used for trouble shooting large notebooks
+# jupyter nbconvert --clear-output explore.ipynb
+# jupyter nbconvert --inplace --execute explore.ipynb
+# jupyter nbconvert --to python explore.ipynb
 
 
 # local-host
