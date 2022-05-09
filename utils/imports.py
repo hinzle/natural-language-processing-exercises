@@ -3,16 +3,25 @@ import sys
 local_path = '/Users/hinzlehome/codeup-data-science/binance-project/'
 sys.path.insert(0,local_path+'.env')
 from env import *
+# used for trouble shooting filepath issues
+import os
+print(os.getcwd())
+# used for trouble shooting large notebooks
+jupyter nbconvert --clear-output explore.ipynb
+jupyter nbconvert --inplace --execute explore.ipynb
+jupyter nbconvert --to python explore.ipynb
+
 
 # local-host
-import re, requests, math, os, datetime, json, pprint
+import itertools, re, requests, math, random, os, datetime, json, pprint
 
 # python data science library's
 import numpy as np
 import pandas as pd
-from scipy import stats
 import statsmodels.api as sm
 from statsmodels.tsa.api import Holt
+from scipy import stats
+from pydataset import data
 
 # sklearn optimizer for intel chip
 from sklearnex import patch_sklearn
@@ -36,13 +45,17 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, QuantileTransformer, PolynomialFeatures
 from sklearn.tree import DecisionTreeClassifier, plot_tree, export_text
 
-
 # visualizations
-import matplotlib.pyplot as plt
-import seaborn as sns
-from matplotlib.dates import DateFormatter
 from pandas.plotting import register_matplotlib_converters
-from pydataset import data
+
+# matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib import style
+from mpl_toolkits.mplot3d import Axes3D
+
+# seaborn
+import seaborn as sns
 
 # binance modules
 import websocket, talib
@@ -51,6 +64,9 @@ from binance.enums import *
 
 # facebook "prophet"
 from prophet import Prophet
+
+# beautifulsoup
+from bs4 import BeautifulSoup
 
 # state properties
 np.random.seed(123)
