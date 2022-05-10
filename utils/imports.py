@@ -11,9 +11,8 @@ from env import *
 # jupyter nbconvert --inplace --execute explore.ipynb
 # jupyter nbconvert --to python explore.ipynb
 
-
 # local-host
-import itertools, re, requests, math, random, os, datetime, json, pprint
+import unicodedata, itertools, re, requests, math, random, os, datetime, json, pprint
 
 # python data science library's
 import numpy as np
@@ -21,7 +20,7 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.tsa.api import Holt
 from scipy import stats
-from pydataset import data
+# from pydataset import data
 
 # sklearn optimizer for intel chip
 from sklearnex import patch_sklearn
@@ -67,6 +66,11 @@ from prophet import Prophet
 
 # beautifulsoup
 from bs4 import BeautifulSoup
+
+#natural language toolkit
+import nltk
+from nltk.tokenize.toktok import ToktokTokenizer
+from nltk.corpus import stopwords
 
 # state properties
 np.random.seed(123)
