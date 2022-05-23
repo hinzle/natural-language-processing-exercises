@@ -6,6 +6,57 @@ sys.path.insert(0, local_path)
 # imports.py in /utils/
 from utils.imports import *
 
+# Thanks Jesse!
+
+def get_post_details(post):
+    """ Returns dictionary of url, title, date published, and content for each post on the Codeup.com/blog site"""
+    output = {}
+    # Extract URL
+    output['url'] = post.select('a')[0].attrs['href']
+    # Extract title
+    output['title'] = post.text.strip()
+    # Extract date published
+    output['date_published'] = post.select('span.published')[0].text
+    # Extracts blog post contents
+    output['original'] = get_blog_content(output['url'])
+    
+    return output
+
+def get_blog_content(url):
+    """ Returns the content of the blog post from Codeup.com/blog """
+    headers = {'User-Agent': 'Codeup Data Science'} # Some websites don't accept the python-requests default user-agent
+    response = get(url, headers=headers)
+
+
+    # Make a soup variable holding the response content
+    soup = BeautifulSoup(response.content, 'html.parser')
+    entry_text = ""
+    # Adds the blog post contents to the string
+    for t in soup.select('div.entry-content'):
+        entry_text += t.text.strip()
+    return entry_text
+
+def get_blog_articles_j(use_cache = True):
+    """ Returns dictionary of information about blog posts on codeup.com/blog site """
+    
+    filename = 'blog.csv'
+    
+    if use_cache and os.path.exists(filename):
+        return pd.read_csv(filename).dropna().to_dict()
+        
+    url = 'https://codeup.com/blog/'
+    headers = {'User-Agent': 'Codeup Data Science'} # Some websites don't accept the python-requests default user-agent
+    response = get(url, headers=headers)
+
+
+    # Make a soup variable holding the response content
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    pd.DataFrame([get_post_details(post) for post in soup.select('article.et_pb_post')]).dropna().to_csv(filename, index=None)
+    
+
+    return [get_post_details(post) for post in soup.select('article.et_pb_post')]
+
 def get_blog_articles(get_fresh_news = False):
     
     if os.path.exists('/Users/hinzlehome/codeup-data-science/natural-language-processing-exercises/csv/blog.csv'):

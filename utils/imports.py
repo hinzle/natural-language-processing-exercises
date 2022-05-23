@@ -36,10 +36,12 @@ from sklearn import metrics
 	# )
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.feature_selection import SelectKBest, RFE, f_regression
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression, LinearRegression, LassoLars, TweedieRegressor
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, QuantileTransformer, PolynomialFeatures
 from sklearn.tree import DecisionTreeClassifier, plot_tree, export_text
@@ -55,6 +57,9 @@ from mpl_toolkits.mplot3d import Axes3D
 
 # seaborn
 import seaborn as sns
+
+# wordcloud
+from wordcloud import WordCloud
 
 # binance modules
 import websocket, talib
